@@ -1,0 +1,45 @@
+name: validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install CDK
+      run: npm install -g aws-cdk
+
+    - name: Install poetry
+      run: pipx install poetry
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+        cache: poetry
+
+    - name: Install python dependencies
+      run: |
+        poetry env use "3.11"
+        poetry install --no-interaction
+
+    - name: Code style check
+      run: poetry run black . --check
+
+    - name: Code quality check
+      run: poetry run ruff .
+
+    - name: CDK synth
+      run: poetry run cdk synth
