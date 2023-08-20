@@ -17,6 +17,5 @@ class MlflowOnAwsStack(Stack):
         s3_bucket = s3.Bucket(
             self,
             "MLFlowS3Bucket",
-            bucket_name="<YOUR_S3_BUCKET>",
             removal_policy=RemovalPolicy.DESTROY,
         )
