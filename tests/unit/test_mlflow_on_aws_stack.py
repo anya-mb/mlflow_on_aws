@@ -3,6 +3,7 @@ import aws_cdk.assertions as assertions
 
 from mlflow_on_aws.mlflow_on_aws_stack import MlflowOnAwsStack
 
+
 # example tests. To run these tests, uncomment this file along with the example
 # resource in mlflow_on_aws/mlflow_on_aws_stack.py
 def test_sqs_queue_created():
