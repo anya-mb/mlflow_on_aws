@@ -8,13 +8,20 @@ packages = [{include = "mlflow_on_aws"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-constructs = "3.3.69"
-aws-cdk-aws-ecs = "^1.204.0"
-aws-cdk-aws-ecr = "^1.204.0"
-aws-cdk-aws-ecs-patterns = "^1.204.0"
-aws-cdk-aws-iam = "^1.204.0"
+aws-cdk-lib = "2.84.0"
+constructs = "^10.2.55, <11.0.0"
+pre-commit = "^3.3.3"
 
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+ruff = "^0.0.278"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+# https://beta.ruff.rs/docs/configuration/
+[tool.ruff]
+line-length = 120
+# Skip unused variable rules (`F841`).
+ignore = ["F841"]
